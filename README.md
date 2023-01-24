@@ -15,13 +15,36 @@ Nesse projeto foi desenvolvido uma interface web que aceita upload do arquivo CN
 
 # Passos de instalação
 
-    1- Clone o repositório para a sua máquina
-    2- Crie um ambiente virtual com o comando: python -m venv venv
-    3.1- Ative o ambiente virtual no Windows: .\venv\Scripts\activate
-    3.2- Ative o ambiente virtual no Linux: source venv/bin/activate
-    4- Instale as todas as dependências: pip install -r requirements.txt
+1- Clone o repositório para a sua máquina
+
+
+2- Crie um ambiente virtual com o comando:
+```
+python -m venv venv
+```
+
+3- Ative o ambiente virtual: 
+```
+# linux:
+source venv/bin/activate
+
+# windows:
+.\venv\Scripts\activate
+```
+
+4- Instale as todas as dependências: 
+```
+pip install -r requirements.txt
+```
 
 # Passos para execução em ambiente de desenvolvimento
 
-    1- Rode as migraçÕes com o comando: python manage.py migrate
-    2- Para rodar a aplicação use o comando: python manage.py runserver
+1- Rode as migrações com o comando:
+```
+python manage.py migrate
+```
+
+2- Para rodar a aplicação use o comando:
+```
+python manage.py runserver
+```
