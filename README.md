@@ -32,7 +32,7 @@ source venv/bin/activate
 .\venv\Scripts\activate
 ```
 
-4- Instale as todas as dependências: 
+4- Instale todas as dependências: 
 ```
 pip install -r requirements.txt
 ```
