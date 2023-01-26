@@ -7,13 +7,25 @@
     <title>Formulário</title>
 </head>
 <body>
-    <form action="{%  url 'cnab_tratada' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
+    <form id="form_home" action="{%  url 'cnab_tratada' %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
         <label>Arquivo CNAB:</label>
         <input type="file" id="arquivoCnab" name="arquivoCnab">
         <br>
         <br>
 
-        <input type="submit" value="Enviar">
+        <input type="submit" value="Enviar" disabled="true" id="input_submit">
     </form>
+    <script>
+        const input_arquivo = document.getElementById("arquivoCnab")
+        
+        input_arquivo.addEventListener("change", e => {
+            length = e.target.files.length
+
+            if (length >= 1) {
+                document.getElementById("input_submit").removeAttribute("disabled")
+            }
+        })
+
+    </script>
 </body>
 </html>

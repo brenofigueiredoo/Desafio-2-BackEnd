@@ -5,7 +5,9 @@ Nesse projeto foi desenvolvido uma interface web que aceita upload do arquivo CN
 
 # Funcionalidades
 
+Na rota http://127.0.0.1:8000/ é onde fica a possibilidade de fazer o upload do arquivo CNAB.txt. A aplicação só funcionará corretamente se o arquivo for do tipo CNAB.txt.
 
+Logo após clicar no botão "enviar" junto ao arquivo CNAB, o usuário será transferido à rota http://127.0.0.1:8000/api/transacoes/ onde trás os resultados da aplicação.
 
 # Tecnologias utilizadas
 
