@@ -1,10 +1,9 @@
-from rest_framework.views import Response, status, Request, APIView
+from rest_framework.views import Response, Request, APIView
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-import ipdb
-
 from .models import Transacoes_loja
 from .serializer import LojaSerializer
+import ipdb
 
 
 def home(request: Request):
@@ -36,6 +35,7 @@ def cnab_tratada(request):
                     "hora": f"{char[42:44]}:{char[44:46]}:{char[46:48]}",
                     "dono_da_loja": char[48:62].strip(),
                     "nome_loja": char[62:81],
+                    "nome_loja": " ".join(char[62:81].split()),
                 }
             )
 
@@ -50,14 +50,30 @@ class TransacoesCnabView(APIView):
         queryset = Transacoes_loja.objects.all()
         serializer = LojaSerializer(queryset, many=True)
 
+        data = {}
+
         valor_saida = 0
         valor_entrada = 0
         for char in queryset:
+            data[char.nome_loja] = 0
+
+        for char in queryset:
             if char.tipo in "239":
+                data[char.nome_loja] -= char.valor
                 valor_saida += char.valor
             else:
+                data[char.nome_loja] += char.valor
                 valor_entrada += char.valor
+
+        for char in queryset:
+            data[char.nome_loja] = round(data[char.nome_loja], 2)
 
         valor_total = valor_entrada - valor_saida
 
-        return Response({"valor_total": valor_total, "data": serializer.data})
+        return Response(
+            {
+                "valor_total": valor_total,
+                "valor_total_loja": data,
+                "data": serializer.data,
+            }
+        )
