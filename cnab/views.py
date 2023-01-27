@@ -18,24 +18,25 @@ def cnab_tratada(request):
     data_transacoes = []
 
     with open("CNAB.txt", "r") as file:
-        for char in file.read().split("\n"):
+        for loja in file.read().split("\n"):
 
+            # ipdb.set_trace()
             valor_tratato = 0
 
-            if len(char[9:19].split()) > 0:
-                valor_tratato = int(char[9:19]) / 100
+            if len(loja[9:19].split()) > 0:
+                valor_tratato = int(loja[9:19]) / 100
 
             data_transacoes.append(
                 {
-                    "tipo": char[0:1],
-                    "data": f"{char[7:9]}/{char[5:7]}/{char[1:5]}",
+                    "tipo": loja[0:1],
+                    "data": f"{loja[7:9]}/{loja[5:7]}/{loja[1:5]}",
                     "valor": valor_tratato,
-                    "cpf": char[19:30],
-                    "cartao": char[30:42],
-                    "hora": f"{char[42:44]}:{char[44:46]}:{char[46:48]}",
-                    "dono_da_loja": char[48:62].strip(),
-                    "nome_loja": char[62:81],
-                    "nome_loja": " ".join(char[62:81].split()),
+                    "cpf": loja[19:30],
+                    "cartao": loja[30:42],
+                    "hora": f"{loja[42:44]}:{loja[44:46]}:{loja[46:48]}",
+                    "dono_da_loja": loja[48:62].strip(),
+                    "nome_loja": loja[62:81],
+                    "nome_loja": " ".join(loja[62:81].split()),
                 }
             )
 
